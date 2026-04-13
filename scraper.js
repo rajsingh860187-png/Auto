@@ -443,23 +443,6 @@ async function runScraper() {
   let resumeIndex = 0;
   let resumePage = 1;
 
-  if (resumeState) {
-    resumeIndex = Number.isInteger(resumeState.countryIndex) && resumeState.countryIndex >= 0 && resumeState.countryIndex < urls.length ? resumeState.countryIndex : 0;
-    resumePage = Number.isInteger(resumeState.page) && resumeState.page > 0 ? resumeState.page : 1;
-    if (resumeIndex !== resumeState.countryIndex || resumePage !== resumeState.page) {
-      console.log('Invalid saved progress detected; starting from the first country and page.');
-      resumeIndex = 0;
-      resumePage = 1;
-    } else {
-      console.log(`Resuming from saved progress: countryIndex=${resumeIndex} page=${resumePage}`);
-    }
-  }
 
-  if (RESET_PROGRESS) {
-    console.log('Reset flag detected. Clearing saved progress and starting from the first country/page.');
-    resumeIndex = 0;
-    resumePage = 1;
-    clearProgress();
-  }
 
   
