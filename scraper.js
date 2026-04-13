@@ -462,29 +462,4 @@ async function runScraper() {
     clearProgress();
   }
 
-  const browser = await puppeteer.launch({
-    headless: 'new',
-    ignoreDefaultArgs: ['--enable-automation'],
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
-      '--disable-accelerated-2d-canvas',
-      '--no-first-run',
-      '--no-zygote',
-      '--disable-gpu',
-      '--disable-blink-features=AutomationControlled',
-      '--disable-infobars',
-      '--window-size=1440,900'
-    ]
-  });
-  const page = await browser.newPage();
-
-  await page.evaluateOnNewDocument(() => {
-    Object.defineProperty(navigator, 'webdriver', { get: () => false });
-    Object.defineProperty(navigator, 'languages', { get: () => ['en-US', 'en'] });
-    Object.defineProperty(navigator, 'plugins', { get: () => [1, 2, 3, 4, 5] });
-    window.navigator.chrome = { runtime: {} };
-  });
-
   
